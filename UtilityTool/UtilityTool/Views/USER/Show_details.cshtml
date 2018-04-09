@@ -1,0 +1,144 @@
+﻿@model UAT_TESTINGS.Models.USERDETAILS
+@*IEnumerable<UAT_TESTINGS.Models.USERDETAILS>*@
+@{
+    ViewBag.Title = "DETAILS";
+}
+@using (Html.BeginForm("search", "USER"))
+{
+    @Html.Label("Enter BatchName")
+    @Html.TextBox("BatchName")
+    <button>Search</button>
+}
+<div style="text-align:right;font-size:x-large;color:indigo">
+    @Html.ActionLink("Show Batches", "Show_details")
+</div>
+<h2 style="background-color:black;color:white;text-align:center">List Of User Details</h2>
+<!DOCTYPE html>
+<!-- template from http://getbootstrap.com/getting-started -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS Includes -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <style type="text/css">
+    </style>
+</head>
+<body>
+    <div>
+        <table class="table table-bordered" style="background-color:gainsboro;color:darkcyan;border:double " id="customers">
+            <tr>
+                <th style="border:double">
+                    @Html.DisplayNameFor(model => model.BatchName)
+                </th>
+                <th style="border:double">
+                    @Html.DisplayNameFor(model => model.BatchStartDate)
+                </th>
+                <th style="border:double">
+                    @Html.DisplayNameFor(model => model.BatchEndDate)
+                </th>
+                <th style="border:double">
+                    @Html.DisplayNameFor(model => model.PreferedAssessmentDate)
+                </th>
+                <th style="border:double">Action</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model.oUserList)
+                {
+                    <tr style="border:double">
+                        <td style="border:double">
+                            @Html.DisplayFor(modelItem => item.BatchName)
+                        </td>
+                        <td style="border:double">
+                            @Html.DisplayFor(modelItem => item.BatchStartDate)
+                        </td>
+                        <td style="border:double">
+                            @Html.DisplayFor(modelItem => item.BatchEndDate)
+                        </td>
+                        <td style="border:double">
+                            @Html.DisplayFor(modelItem => item.PreferedAssessmentDate)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditUserDetails", new { Bname = item.BatchName })
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+</body>
+</html>
+<style>
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: lightblue;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: darkcyan;
+            color: white;
+        }
+</style>
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            //Call EmpDetails jsonResult Method
+            $.getJSON("USER/Show_details",
+            function (json) {
+                var tr;
+
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td>" + json[i].BatchName + "</td>");
+                    tr.append("<td>" + json[i].Batch+ "</td>");
+                    tr.append("<td>" + json[i].City + "</td>");
+                    tr.append("<td>" + json[i].Address + "</td>");
+                    $('table').append(tr);
+
+            }
+            $('#EmpInfo').DataTable();
+            });
+
+        });
+
+    </script>
+    <hr />
+    <div class="form-horizontal">
+        <table id="EmpInfo" class="table table-bordered  table-hover">
+            <thead>
+                <tr>
+                    <th>BatchName</th>
+                    <th>BatchStartDate</th>
+                    <th>BatchEndDate</th>
+                    <th>PreferedAssessmentDate</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>*@
